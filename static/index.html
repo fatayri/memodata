@@ -1,0 +1,41 @@
+<html>
+<head>
+    <style>
+        body {
+            text-align: center;
+        }
+        #result {
+            text-align: center;
+            font-size: 150%;
+            margin-top: 20px;
+        }
+        form button {
+            margin: 10px 0;
+            font-size: 150%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Определение категории профессии</h1>
+    <form id="form" action="/api/check" method="post">
+        <textarea name="text" placeholder="Текст" cols="100" rows="30"></textarea><br>
+        <button type="submit">Проверить</button>
+    </form>
+    <div id="result"></div>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(function () {
+            $('#form').submit(function () {
+                $.post($(this).attr('action'), $(this).serialize(), function (response) {
+                    if (response.cluster == "not found") {
+                        $('#result').html('Профессия не найдена :(').css('color', 'red');
+                    } else {
+                        $('#result').html(response.cluster).css('color', 'green');
+                    }
+                }, 'json');
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

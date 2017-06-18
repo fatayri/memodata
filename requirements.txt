@@ -1,0 +1,5 @@
+requirements
+stop_words
+flask
+pymystem3
+requests
