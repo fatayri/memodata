@@ -3,7 +3,7 @@
 
 import re, string, csv, codecs, requests, json
 from pymystem3 import Mystem
-import pandas as pd
+
 
 m_cache = {}
 m = Mystem()
